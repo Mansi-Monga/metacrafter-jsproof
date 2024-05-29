@@ -1,29 +1,41 @@
 
-let nftCollection = [];
+let nfts = [];
 
 
-function mintNFT(name, description, image) {
-  let nft = {
-    name: name,
-    description: description,
-    image: image
-  };
-  nftCollection.push(nft);
+const mintNFT = (title, artist, dateCreated, value) => {
+    const nft = {
+        id: `id-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, // Unique identifier using timestamp and random string
+        title,
+        artist,
+        dateCreated,
+        value
+    };
+
+    nfts.push(nft);
 }
 
 
-function listNFTs() {
-  nftCollection.forEach(nft => {
-    console.log("Name: " + nft.name + ", Description: " + nft.description + ", Image: " + nft.image);
-  });
+const listNFTs = () => {
+    nfts.forEach(nft => {
+        console.log(`ID: ${nft.id}`);
+        console.log(`Title: ${nft.title}`);
+        console.log(`Artist: ${nft.artist}`);
+        console.log(`Date Created: ${nft.dateCreated}`);
+        console.log(`Value: ${nft.value}`);
+        console.log('-----------------------');
+    });
 }
 
 
-function getTotalSupply() {
-  console.log("Total supply of NFTs: " + nftCollection.length);
+const getTotalSupply = () => {
+    console.log(`Total NFTs minted: ${nfts.length}`);
+    return nfts.length;
 }
 
 
-mintNFT("CryptoCorgi", "A cute Corgi NFT", "corgi.png");
+mintNFT("CryptoPunk #3100", "Larva Labs", "2017-06-23", "4200 ETH");
+mintNFT("Bored Ape #5199", "Yuga Labs", "2021-05-01", "300 ETH");
+mintNFT("Art Blocks #123", "Art Blocks Curated", "2020-10-03", "500 ETH");
+
 listNFTs();
 getTotalSupply();
